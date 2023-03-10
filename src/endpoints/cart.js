@@ -244,12 +244,17 @@ class CartEndpoint extends BaseExtend {
     return this.request.send(`${this.endpoint}/${this.cartId}`, 'DELETE')
   }
 
+<<<<<<< HEAD
   Merge(cartId, token, options) {
+=======
+  Merge(cartId, options) {
+>>>>>>> 6cbe2f5979eace7f3aa95360b48c559ff26b66ae
     const body = {
       type: 'cart_items',
       cart_id: `${cartId}`
     }
 
+<<<<<<< HEAD
     return this.request.send(
       `${this.endpoint}/${this.cartId}/items`,
       'POST',
@@ -259,6 +264,12 @@ class CartEndpoint extends BaseExtend {
       },
       token
     )
+=======
+    return this.request.send(`${this.endpoint}/${this.cartId}/items`, 'POST', {
+      data: body,
+      ...(options && { options })
+    })
+>>>>>>> 6cbe2f5979eace7f3aa95360b48c559ff26b66ae
   }
 }
 
