@@ -1,5 +1,9 @@
 import { pluralize, underscore } from 'inflected'
-import {DEFAULT_CART_KEY, DEFAULT_CREDENTIALS_KEY, DEFAULT_CURRENCY_KEY} from "./constants";
+import {
+  DEFAULT_CART_KEY,
+  DEFAULT_CREDENTIALS_KEY,
+  DEFAULT_CURRENCY_KEY
+} from './constants'
 
 export function buildRelationshipData(type, ids, typeModifier = underscore) {
   let data = []
@@ -257,7 +261,10 @@ export function resolveCredentialsStorageKey(name) {
 }
 
 export function tokenInvalid({ storage, client_id, reauth, name }) {
-  const credentials = getCredentials(storage, resolveCredentialsStorageKey(name))
+  const credentials = getCredentials(
+    storage,
+    resolveCredentialsStorageKey(name)
+  )
 
   const handleInvalid = message => {
     /* eslint-disable no-console */
@@ -289,4 +296,3 @@ export function isNode() {
     process.versions.node != null
   )
 }
-
