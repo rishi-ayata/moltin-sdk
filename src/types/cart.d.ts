@@ -8,6 +8,7 @@ import { Resource, QueryableResource } from './core'
 import { Address } from './address'
 import { Price, FormattedPrice } from './price'
 import { Order } from './order'
+import { PcmProductResponse } from './pcm'
 
 export interface CheckoutCustomer {
   id: string
@@ -140,6 +141,9 @@ export interface CartItemsResponse {
 }
 
 export interface BulkAddOptions {
+  add_all_or_nothing: boolean
+}
+export interface MergeCartOptions {
   add_all_or_nothing: boolean
 }
 
@@ -494,6 +498,20 @@ export interface CartEndpoint
     shippingAddress?: Partial<Address>,
     additionalHeaders?: CartAdditionalHeaders
   ): Promise<Resource<Order>>
+
+  /**
+   * Merge cart
+   * Description: The multiple carts created by the user could be merged into a single cart.
+   * The cart associated to a customer could be merged with a cart created anonymously by the user.
+   * Once the carts are merged successfully, the cart items quantity get incremented if the same product is available in both carts .
+   * DOCS: https://elasticpath.dev/docs/carts/cart-items/merging-carts
+   * @param cartId the cart ID.
+   * @param
+   */
+  Merge(
+    cartId: string,
+    options?: MergeCartOptions
+  ): Promise<PcmProductResponse[]>
 
   /**
    * Delete a Cart
